@@ -14,4 +14,9 @@
     <Folder Include="Icons\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ResidentBrowser.ApplicationLayer\ResidentBrowser.ApplicationLayer.csproj" />
+    <ProjectReference Include="..\ResidentBrowser.InfrastructureLayer\ResidentBrowser.InfrastructureLayer.csproj" />
+  </ItemGroup>
+
 </Project>
