@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using ResidentBrowser.ApplicationLayer.Interfaces.ResidentInterfaces;
 using ResidentBrowser.ApplicationLayer.Services;
+using ResidentBrowser.InfrastructureLayer.Repositories;
 using ResidentBrowser.WinForms.Forms.ResidentForms;
 
 namespace ResidentBrowser.WinForms;
@@ -26,7 +27,11 @@ internal static class Program
 
     private static void ConfigureServices(IServiceCollection services)
     {
+        //Services:
         services.AddScoped<IResidentService, ResidentService>();
+
+        //Repositories:
+        services.AddScoped<IResidentRepository, ResidentRepository>();
 
         services.AddTransient<MainForm>();
         services.AddTransient<ResidentForm>();

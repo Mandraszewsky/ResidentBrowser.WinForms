@@ -225,6 +225,7 @@ partial class ResidentForm
         Controls.Add(residentsDataGridView);
         Name = "ResidentForm";
         Text = "ResidentForm";
+        Activated += ResidentForm_Activated;
         ((System.ComponentModel.ISupportInitialize)residentsDataGridView).EndInit();
         ResumeLayout(false);
         PerformLayout();
