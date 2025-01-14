@@ -29,9 +29,9 @@ partial class MainForm
     private void InitializeComponent()
     {
         navigationPanel = new Panel();
+        exportButton = new Button();
         residentsButton = new Button();
         panel1 = new Panel();
-        exportButton = new Button();
         navigationPanel.SuspendLayout();
         SuspendLayout();
         // 
@@ -47,6 +47,24 @@ partial class MainForm
         navigationPanel.Size = new Size(200, 561);
         navigationPanel.TabIndex = 0;
         // 
+        // exportButton
+        // 
+        exportButton.BackColor = Color.MidnightBlue;
+        exportButton.Dock = DockStyle.Top;
+        exportButton.FlatAppearance.BorderSize = 0;
+        exportButton.FlatStyle = FlatStyle.Flat;
+        exportButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+        exportButton.ForeColor = Color.White;
+        exportButton.Image = Properties.Resources.reports;
+        exportButton.ImageAlign = ContentAlignment.MiddleLeft;
+        exportButton.Location = new Point(0, 151);
+        exportButton.Name = "exportButton";
+        exportButton.Size = new Size(200, 75);
+        exportButton.TabIndex = 3;
+        exportButton.Text = "Exports";
+        exportButton.TextImageRelation = TextImageRelation.ImageBeforeText;
+        exportButton.UseVisualStyleBackColor = false;
+        // 
         // residentsButton
         // 
         residentsButton.BackColor = Color.MidnightBlue;
@@ -55,11 +73,15 @@ partial class MainForm
         residentsButton.FlatStyle = FlatStyle.Flat;
         residentsButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
         residentsButton.ForeColor = Color.White;
+        residentsButton.Image = Properties.Resources.residents;
+        residentsButton.ImageAlign = ContentAlignment.MiddleLeft;
         residentsButton.Location = new Point(0, 76);
         residentsButton.Name = "residentsButton";
+        residentsButton.RightToLeft = RightToLeft.No;
         residentsButton.Size = new Size(200, 75);
         residentsButton.TabIndex = 1;
         residentsButton.Text = "Residents";
+        residentsButton.TextImageRelation = TextImageRelation.ImageBeforeText;
         residentsButton.UseVisualStyleBackColor = false;
         // 
         // panel1
@@ -70,21 +92,6 @@ partial class MainForm
         panel1.Name = "panel1";
         panel1.Size = new Size(200, 76);
         panel1.TabIndex = 2;
-        // 
-        // exportButton
-        // 
-        exportButton.BackColor = Color.MidnightBlue;
-        exportButton.Dock = DockStyle.Top;
-        exportButton.FlatAppearance.BorderSize = 0;
-        exportButton.FlatStyle = FlatStyle.Flat;
-        exportButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
-        exportButton.ForeColor = Color.White;
-        exportButton.Location = new Point(0, 151);
-        exportButton.Name = "exportButton";
-        exportButton.Size = new Size(200, 75);
-        exportButton.TabIndex = 3;
-        exportButton.Text = "Exports";
-        exportButton.UseVisualStyleBackColor = false;
         // 
         // MainForm
         // 
