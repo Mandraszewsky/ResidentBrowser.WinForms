@@ -1,16 +1,34 @@
+using Microsoft.Extensions.DependencyInjection;
+using ResidentBrowser.ApplicationLayer.Interfaces.ResidentInterfaces;
+using ResidentBrowser.ApplicationLayer.Services;
+using ResidentBrowser.WinForms.Forms.ResidentForms;
+
 namespace ResidentBrowser.WinForms;
 
 internal static class Program
 {
-    /// <summary>
-    ///  The main entry point for the application.
-    /// </summary>
+    public static IServiceProvider? ServiceProvider { get; private set; }
+
     [STAThread]
     static void Main()
     {
-        // To customize application configuration such as set high DPI settings or default font,
-        // see https://aka.ms/applicationconfiguration.
+        var services = new ServiceCollection();
+        ConfigureServices(services);
+
+        ServiceProvider = services.BuildServiceProvider();
+
         ApplicationConfiguration.Initialize();
-        Application.Run(new MainForm());
+
+        var mainForm = ServiceProvider.GetRequiredService<MainForm>();
+
+        Application.Run(mainForm);
+    }
+
+    private static void ConfigureServices(IServiceCollection services)
+    {
+        services.AddScoped<IResidentService, ResidentService>();
+
+        services.AddTransient<MainForm>();
+        services.AddTransient<ResidentForm>();
     }
 }

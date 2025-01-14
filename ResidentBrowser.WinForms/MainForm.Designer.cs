@@ -29,41 +29,42 @@ partial class MainForm
     private void InitializeComponent()
     {
         navigationPanel = new Panel();
-        exportButton = new Button();
+        exportsButton = new Button();
         residentsButton = new Button();
         panel1 = new Panel();
+        currentViewPanel = new Panel();
         navigationPanel.SuspendLayout();
         SuspendLayout();
         // 
         // navigationPanel
         // 
         navigationPanel.BackColor = Color.MidnightBlue;
-        navigationPanel.Controls.Add(exportButton);
+        navigationPanel.Controls.Add(exportsButton);
         navigationPanel.Controls.Add(residentsButton);
         navigationPanel.Controls.Add(panel1);
         navigationPanel.Dock = DockStyle.Left;
         navigationPanel.Location = new Point(0, 0);
         navigationPanel.Name = "navigationPanel";
-        navigationPanel.Size = new Size(200, 561);
+        navigationPanel.Size = new Size(200, 591);
         navigationPanel.TabIndex = 0;
         // 
-        // exportButton
+        // exportsButton
         // 
-        exportButton.BackColor = Color.MidnightBlue;
-        exportButton.Dock = DockStyle.Top;
-        exportButton.FlatAppearance.BorderSize = 0;
-        exportButton.FlatStyle = FlatStyle.Flat;
-        exportButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
-        exportButton.ForeColor = Color.White;
-        exportButton.Image = Properties.Resources.reports;
-        exportButton.ImageAlign = ContentAlignment.MiddleLeft;
-        exportButton.Location = new Point(0, 151);
-        exportButton.Name = "exportButton";
-        exportButton.Size = new Size(200, 75);
-        exportButton.TabIndex = 3;
-        exportButton.Text = "Exports";
-        exportButton.TextImageRelation = TextImageRelation.ImageBeforeText;
-        exportButton.UseVisualStyleBackColor = false;
+        exportsButton.BackColor = Color.MidnightBlue;
+        exportsButton.Dock = DockStyle.Top;
+        exportsButton.FlatAppearance.BorderSize = 0;
+        exportsButton.FlatStyle = FlatStyle.Flat;
+        exportsButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+        exportsButton.ForeColor = Color.White;
+        exportsButton.Image = Properties.Resources.reports;
+        exportsButton.ImageAlign = ContentAlignment.MiddleLeft;
+        exportsButton.Location = new Point(0, 151);
+        exportsButton.Name = "exportsButton";
+        exportsButton.Size = new Size(200, 75);
+        exportsButton.TabIndex = 3;
+        exportsButton.Text = "Exports";
+        exportsButton.TextImageRelation = TextImageRelation.ImageBeforeText;
+        exportsButton.UseVisualStyleBackColor = false;
         // 
         // residentsButton
         // 
@@ -83,6 +84,7 @@ partial class MainForm
         residentsButton.Text = "Residents";
         residentsButton.TextImageRelation = TextImageRelation.ImageBeforeText;
         residentsButton.UseVisualStyleBackColor = false;
+        residentsButton.Click += residentsButton_Click;
         // 
         // panel1
         // 
@@ -93,11 +95,19 @@ partial class MainForm
         panel1.Size = new Size(200, 76);
         panel1.TabIndex = 2;
         // 
+        // currentViewPanel
+        // 
+        currentViewPanel.Location = new Point(199, 0);
+        currentViewPanel.Name = "currentViewPanel";
+        currentViewPanel.Size = new Size(925, 600);
+        currentViewPanel.TabIndex = 1;
+        // 
         // MainForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(884, 561);
+        ClientSize = new Size(1124, 591);
+        Controls.Add(currentViewPanel);
         Controls.Add(navigationPanel);
         Name = "MainForm";
         Text = "Resident Browser";
@@ -110,5 +120,6 @@ partial class MainForm
     private Panel navigationPanel;
     private Button residentsButton;
     private Panel panel1;
-    private Button exportButton;
+    private Button exportsButton;
+    private Panel currentViewPanel;
 }
