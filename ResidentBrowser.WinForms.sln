@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResidentBrowser.WinForms", "ResidentBrowser.WinForms\ResidentBrowser.WinForms.csproj", "{E92EF127-A31B-484C-AF8A-DF47A410F660}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E92EF127-A31B-484C-AF8A-DF47A410F660}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E92EF127-A31B-484C-AF8A-DF47A410F660}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E92EF127-A31B-484C-AF8A-DF47A410F660}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E92EF127-A31B-484C-AF8A-DF47A410F660}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BE43E20B-5EB9-40DB-BB6C-3193E7FE174E}
+	EndGlobalSection
+EndGlobal
