@@ -1,5 +1,6 @@
 ﻿using ResidentBrowser.ApplicationLayer.Interfaces.ProvinceInterfaces;
 using ResidentBrowser.ApplicationLayer.Interfaces.ResidentInterfaces;
+using ResidentBrowser.ApplicationLayer.Validators;
 using ResidentBrowser.DomainLayer.Enums;
 using ResidentBrowser.DomainLayer.Models;
 
@@ -77,8 +78,18 @@ public partial class AddResidentForm : Form
         var lastResidentId = await _residentService.GetResidentLastIdAsync();
         resident.Id = lastResidentId + 1;
 
-        await _residentService.CreateResident(resident);
+        var validator = new ResidentValidator();
+        var validatorResult = validator.Validate(resident);
 
-        this.Close();
+        if (validatorResult.IsValid)
+        {
+            await _residentService.CreateResident(resident);
+            this.Close();
+        }
+        else
+        {
+            string errorMessages = string.Join(Environment.NewLine, validatorResult.Errors.Select(error => error.ErrorMessage));
+            MessageBox.Show(errorMessages, "Validation error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }
