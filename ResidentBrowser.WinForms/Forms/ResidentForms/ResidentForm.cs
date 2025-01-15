@@ -65,9 +65,19 @@ public partial class ResidentForm : Form
         addResidentForm.ShowDialog();
     }
 
-    private void removeResidentButton_Click(object sender, EventArgs e)
+    private async void removeResidentButton_Click(object sender, EventArgs e)
     {
+        var residentId = (int)residentsDataGridView.CurrentRow.Cells[0].Value;
+        var residentName = $"{(string)residentsDataGridView.CurrentRow.Cells[1].Value} {(string)residentsDataGridView.CurrentRow.Cells[2].Value}";
 
+        var result = MessageBox.Show($"Are you sure that you want to delete resident named: {residentName}?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+        if (result == DialogResult.Yes)
+        {
+            await _residentService.DeleteResident(residentId);
+
+            FillResidentsGridView();
+        }
     }
 
     private void residentTextBoxFilter_TextChanged(object sender, EventArgs e)

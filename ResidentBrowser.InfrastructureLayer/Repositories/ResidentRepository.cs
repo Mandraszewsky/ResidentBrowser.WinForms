@@ -5,6 +5,7 @@ using ResidentBrowser.DomainLayer.Enums;
 using ResidentBrowser.DomainLayer.Models;
 using ResidentBrowser.InfrastructureLayer.Data;
 using System.Collections.Generic;
+using System.Data;
 
 namespace ResidentBrowser.InfrastructureLayer.Repositories;
 
@@ -46,9 +47,26 @@ public class ResidentRepository : IResidentRepository
         }
     }
 
-    public Task DeleteResident(int id)
+    public async Task DeleteResident(int id)
     {
-        throw new NotImplementedException();
+        SqlConnection conn = new SqlConnection(connectionString);
+
+        string querySQL = $"DELETE FROM Osoby WHERE ID_Osoby = '{id}'";
+
+        var command = new SqlCommand(querySQL, conn);
+
+        try
+        {
+            await conn.OpenAsync();
+
+            await command.ExecuteNonQueryAsync();
+
+            await conn.CloseAsync();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
 
     public async Task<Resident> GetResidentByIdAsync(int id)
