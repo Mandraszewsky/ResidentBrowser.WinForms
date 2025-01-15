@@ -1,5 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using ResidentBrowser.ApplicationLayer.Interfaces.ResidentInterfaces;
+using ResidentBrowser.DomainLayer.Enums;
 using ResidentBrowser.DomainLayer.Models;
 
 namespace ResidentBrowser.WinForms.Forms.ResidentForms;
@@ -17,6 +18,8 @@ public partial class ResidentForm : Form
 
         InitializeComponent();
         FillResidentsGridView();
+        FillProfessionComboBox();
+        FillSkinColorComboBox();
     }
 
     private async void FillResidentsGridView()
@@ -25,6 +28,22 @@ public partial class ResidentForm : Form
 
         bindingSource.DataSource = residentList;
         residentsDataGridView.DataSource = bindingSource;
+    }
+
+    private void FillProfessionComboBox()
+    {
+        foreach (ResidentProfessionEnum profession in Enum.GetValues(typeof(ResidentProfessionEnum)))
+        {
+            residentProfessionComboBox.Items.Add(profession);
+        }
+    }
+
+    private void FillSkinColorComboBox()
+    {
+        foreach (ResidentSkinColorEnum skinColor in Enum.GetValues(typeof(ResidentSkinColorEnum)))
+        {
+            residentSkinColorComboBox.Items.Add(skinColor);
+        }
     }
 
     private void ResidentForm_Activated(object sender, EventArgs e)
@@ -81,5 +100,21 @@ public partial class ResidentForm : Form
         residentSearchToDateTimePicker.Value = DateTime.Now;
 
         bindingSource.DataSource = residentList;
+    }
+
+    private void residentComboBoxFilter_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        var filterList = bindingSource.DataSource as List<Resident>;
+
+        var filterProfessionText = residentProfessionComboBox.Text;
+        var filterSkinColorText = residentSkinColorComboBox.Text;
+
+        if (!string.IsNullOrWhiteSpace(filterProfessionText) && !filterList.IsNullOrEmpty())
+            filterList = filterList!.Where(x => x.Profession.ToString().Equals(filterProfessionText, StringComparison.OrdinalIgnoreCase)).ToList();
+
+        if (!string.IsNullOrWhiteSpace(filterSkinColorText) && !filterList.IsNullOrEmpty())
+            filterList = filterList!.Where(x => x.SkinColor.ToString().Equals(filterSkinColorText, StringComparison.OrdinalIgnoreCase)).ToList();
+
+        bindingSource.DataSource = filterList;
     }
 }

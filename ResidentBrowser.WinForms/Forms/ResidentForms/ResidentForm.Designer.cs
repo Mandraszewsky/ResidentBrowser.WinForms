@@ -144,6 +144,7 @@ partial class ResidentForm
         residentProfessionComboBox.Name = "residentProfessionComboBox";
         residentProfessionComboBox.Size = new Size(147, 23);
         residentProfessionComboBox.TabIndex = 10;
+        residentProfessionComboBox.SelectedIndexChanged += residentComboBoxFilter_SelectedIndexChanged;
         // 
         // residentProfessionLabel
         // 
@@ -170,6 +171,7 @@ partial class ResidentForm
         residentSkinColorComboBox.Name = "residentSkinColorComboBox";
         residentSkinColorComboBox.Size = new Size(147, 23);
         residentSkinColorComboBox.TabIndex = 12;
+        residentSkinColorComboBox.SelectedIndexChanged += residentComboBoxFilter_SelectedIndexChanged;
         // 
         // residentSearchToDateTimePicker
         // 
