@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using ResidentBrowser.ApplicationLayer.Interfaces.ResidentInterfaces;
 using ResidentBrowser.DomainLayer.Enums;
 using ResidentBrowser.DomainLayer.Models;
@@ -49,6 +50,24 @@ public partial class ResidentForm : Form
     private void ResidentForm_Activated(object sender, EventArgs e)
     {
         FillResidentsGridView();
+    }
+
+    private void ChildForm_FormClosed(object sender, FormClosedEventArgs e)
+    {
+        FillResidentsGridView();
+    }
+
+    private void addResidentButton_Click(object sender, EventArgs e)
+    {
+        AddResidentForm addResidentForm = Program.ServiceProvider!.GetRequiredService<AddResidentForm>();
+
+        addResidentForm.FormClosed += ChildForm_FormClosed!;
+        addResidentForm.ShowDialog();
+    }
+
+    private void removeResidentButton_Click(object sender, EventArgs e)
+    {
+
     }
 
     private void residentTextBoxFilter_TextChanged(object sender, EventArgs e)

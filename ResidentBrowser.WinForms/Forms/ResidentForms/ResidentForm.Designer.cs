@@ -66,6 +66,7 @@ partial class ResidentForm
         addResidentButton.TabIndex = 1;
         addResidentButton.Text = "Add resident";
         addResidentButton.UseVisualStyleBackColor = true;
+        addResidentButton.Click += addResidentButton_Click;
         // 
         // removeResidentButton
         // 
@@ -75,6 +76,7 @@ partial class ResidentForm
         removeResidentButton.TabIndex = 2;
         removeResidentButton.Text = "Remove resident";
         removeResidentButton.UseVisualStyleBackColor = true;
+        removeResidentButton.Click += removeResidentButton_Click;
         // 
         // residentSearchNameTextBox
         // 

@@ -4,6 +4,7 @@ using ResidentBrowser.ApplicationLayer.Utilities;
 using ResidentBrowser.DomainLayer.Enums;
 using ResidentBrowser.DomainLayer.Models;
 using ResidentBrowser.InfrastructureLayer.Data;
+using System.Collections.Generic;
 
 namespace ResidentBrowser.InfrastructureLayer.Repositories;
 
@@ -11,9 +12,38 @@ public class ResidentRepository : IResidentRepository
 {
     private readonly string connectionString = DatabaseConfig.ConnectionString;
 
-    public Task CreateResident(Resident resident)
+    public async Task CreateResident(Resident resident)
     {
-        throw new NotImplementedException();
+        SqlConnection conn = new SqlConnection(connectionString);
+
+        string querySQL = "INSERT INTO Osoby (ID_Osoby, Imie, Nazwisko, PESEL, DataUrodzenia, KolorSkory, ID_Wojewodztwa, Zawod) VALUES (@Id, @FirstName, @LastName, @PESEL, @BirthDate, @SkinColor, @Province, @Profession)";
+
+        var skinColorName = EnumHelper.GetDescription<ResidentSkinColorEnum>((ResidentSkinColorEnum)resident.SkinColor!);
+        var professionName = EnumHelper.GetDescription<ResidentProfessionEnum>((ResidentProfessionEnum)resident.Profession!);
+
+        var command = new SqlCommand(querySQL, conn);
+
+        command.Parameters.Add(new SqlParameter("@Id", resident.Id));
+        command.Parameters.Add(new SqlParameter("@FirstName", resident.FirstName));
+        command.Parameters.Add(new SqlParameter("@LastName", resident.LastName));
+        command.Parameters.Add(new SqlParameter("@PESEL", resident.PESEL));
+        command.Parameters.Add(new SqlParameter("@Province", Convert.ToInt32(resident.Province)));
+        command.Parameters.Add(new SqlParameter("@BirthDate", resident.BirthDate));
+        command.Parameters.Add(new SqlParameter("@SkinColor", skinColorName));
+        command.Parameters.Add(new SqlParameter("@Profession", professionName));
+
+        try
+        {
+            await conn.OpenAsync();
+
+            await command.ExecuteNonQueryAsync();
+
+            await conn.CloseAsync();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
 
     public Task DeleteResident(int id)
@@ -61,6 +91,40 @@ public class ResidentRepository : IResidentRepository
             throw new Exception(ex.Message);
         }
 
+    }
+
+    public async Task<int> GetResidentLastIdAsync()
+    {
+        var lastId = new int();
+
+        SqlConnection conn = new SqlConnection(connectionString);
+
+        string querySQL = "SELECT MAX(ID_Osoby) AS LastId FROM Osoby;";
+
+        try
+        {
+            await conn.OpenAsync();
+
+            var command = new SqlCommand(querySQL, conn);
+            var dataReader = await command.ExecuteReaderAsync();
+
+            if (dataReader != null)
+            {
+                while (dataReader.Read())
+                {
+                    lastId = Convert.ToInt32(dataReader["LastId"]);
+                }
+            }
+
+            await conn.CloseAsync();
+
+            return lastId;
+
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
 
     public async Task<List<Resident>> GetResidentListAsync()

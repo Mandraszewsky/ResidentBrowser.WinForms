@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using ResidentBrowser.ApplicationLayer.Interfaces.ProvinceInterfaces;
 using ResidentBrowser.ApplicationLayer.Interfaces.ResidentInterfaces;
 using ResidentBrowser.ApplicationLayer.Services;
 using ResidentBrowser.InfrastructureLayer.Repositories;
@@ -29,11 +30,14 @@ internal static class Program
     {
         //Services:
         services.AddScoped<IResidentService, ResidentService>();
+        services.AddScoped<IProvinceService, ProvinceService>();
 
         //Repositories:
         services.AddScoped<IResidentRepository, ResidentRepository>();
+        services.AddScoped<IProvinceRepository, ProvinceRepository>();
 
         services.AddTransient<MainForm>();
         services.AddTransient<ResidentForm>();
+        services.AddTransient<AddResidentForm>();
     }
 }

@@ -27,6 +27,11 @@ public class ResidentService : IResidentService
         return await _residentRepository.GetResidentByIdAsync(id);
     }
 
+    public async Task<int> GetResidentLastIdAsync()
+    {
+        return await _residentRepository.GetResidentLastIdAsync();
+    }
+
     public async Task<List<Resident>> GetResidentListAsync()
     {
         return await _residentRepository.GetResidentListAsync();
