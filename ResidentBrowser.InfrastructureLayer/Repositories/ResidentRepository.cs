@@ -27,7 +27,7 @@ public class ResidentRepository : IResidentRepository
 
         SqlConnection conn = new SqlConnection(connectionString);
 
-        string querySQL = $"SELECT ID_Osoby, Imie, Nazwisko, PESEL, DataUrodzenia, KolorSkory, Zawod FROM Osoby WHERE ID_Osoby = '{id}'";
+        string querySQL = $"SELECT o.ID_Osoby, o.Imie, o.Nazwisko, o.PESEL, o.DataUrodzenia, o.KolorSkory, o.Zawod, w.NazwaWojewodztwa FROM Osoby o INNER JOIN Wojewodztwa w ON o.ID_Wojewodztwa = w.ID_Wojewodztwa WHERE ID_Osoby = '{id}'";
 
         try
         {
@@ -44,6 +44,7 @@ public class ResidentRepository : IResidentRepository
                     resident.FirstName = dataReader["Imie"].ToString();
                     resident.LastName = dataReader["Nazwisko"].ToString();
                     resident.PESEL = dataReader["PESEL"].ToString();
+                    resident.Province = dataReader["NazwaWojewodztwa"].ToString();
                     resident.BirthDate = DateTime.Parse(dataReader["DataUrodzenia"].ToString()!);
                     resident.SkinColor = (ResidentSkinColorEnum)Convert.ToInt32(dataReader["KolorSkory"].ToString());
                     resident.Profession = (ResidentProfessionEnum)Convert.ToInt32(dataReader["Zawod"].ToString());
@@ -68,7 +69,7 @@ public class ResidentRepository : IResidentRepository
 
         SqlConnection conn = new SqlConnection(connectionString);
 
-        string querySQL = "SELECT ID_Osoby, Imie, Nazwisko, PESEL, DataUrodzenia, KolorSkory, Zawod FROM Osoby;";
+        string querySQL = "SELECT o.ID_Osoby, o.Imie, o.Nazwisko, o.PESEL, o.DataUrodzenia, o.KolorSkory, o.Zawod, w.NazwaWojewodztwa FROM Osoby o INNER JOIN Wojewodztwa w ON o.ID_Wojewodztwa = w.ID_Wojewodztwa;";
 
         try
         {
@@ -87,6 +88,7 @@ public class ResidentRepository : IResidentRepository
                     resident.FirstName = dataReader["Imie"].ToString();
                     resident.LastName = dataReader["Nazwisko"].ToString();
                     resident.PESEL = dataReader["PESEL"].ToString();
+                    resident.Province = dataReader["NazwaWojewodztwa"].ToString();
                     resident.BirthDate = DateTime.Parse(dataReader["DataUrodzenia"].ToString()!);
 
                     var skinColor = EnumHelper.GetEnumValueFromDescription<ResidentSkinColorEnum>(dataReader["KolorSkory"].ToString()!);

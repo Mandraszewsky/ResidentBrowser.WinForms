@@ -46,6 +46,7 @@ partial class ResidentForm
         residentSearchToLabel = new Label();
         residentSearchFromLabel = new Label();
         residentSearchFromDateTimePicker = new DateTimePicker();
+        applayDateFilterButton = new Button();
         ((System.ComponentModel.ISupportInitialize)residentsDataGridView).BeginInit();
         SuspendLayout();
         // 
@@ -81,6 +82,7 @@ partial class ResidentForm
         residentSearchNameTextBox.Name = "residentSearchNameTextBox";
         residentSearchNameTextBox.Size = new Size(190, 23);
         residentSearchNameTextBox.TabIndex = 3;
+        residentSearchNameTextBox.TextChanged += residentTextBoxFilter_TextChanged;
         // 
         // residentSearchNameLabel
         // 
@@ -106,6 +108,7 @@ partial class ResidentForm
         residentSearchPESELTextBox.Name = "residentSearchPESELTextBox";
         residentSearchPESELTextBox.Size = new Size(190, 23);
         residentSearchPESELTextBox.TabIndex = 5;
+        residentSearchPESELTextBox.TextChanged += residentTextBoxFilter_TextChanged;
         // 
         // residentSearchProvinceLabel
         // 
@@ -122,15 +125,17 @@ partial class ResidentForm
         residentSearchProvinceTextBox.Name = "residentSearchProvinceTextBox";
         residentSearchProvinceTextBox.Size = new Size(190, 23);
         residentSearchProvinceTextBox.TabIndex = 7;
+        residentSearchProvinceTextBox.TextChanged += residentTextBoxFilter_TextChanged;
         // 
         // residentResetFiltersButton
         // 
-        residentResetFiltersButton.Location = new Point(740, 325);
+        residentResetFiltersButton.Location = new Point(565, 85);
         residentResetFiltersButton.Name = "residentResetFiltersButton";
         residentResetFiltersButton.Size = new Size(119, 29);
         residentResetFiltersButton.TabIndex = 9;
         residentResetFiltersButton.Text = "Reset filters";
         residentResetFiltersButton.UseVisualStyleBackColor = true;
+        residentResetFiltersButton.Click += residentResetFiltersButton_Click;
         // 
         // residentProfessionComboBox
         // 
@@ -169,7 +174,7 @@ partial class ResidentForm
         // residentSearchToDateTimePicker
         // 
         residentSearchToDateTimePicker.Format = DateTimePickerFormat.Short;
-        residentSearchToDateTimePicker.Location = new Point(153, 91);
+        residentSearchToDateTimePicker.Location = new Point(273, 91);
         residentSearchToDateTimePicker.Name = "residentSearchToDateTimePicker";
         residentSearchToDateTimePicker.Size = new Size(100, 23);
         residentSearchToDateTimePicker.TabIndex = 14;
@@ -177,7 +182,7 @@ partial class ResidentForm
         // residentSearchToLabel
         // 
         residentSearchToLabel.AutoSize = true;
-        residentSearchToLabel.Location = new Point(153, 73);
+        residentSearchToLabel.Location = new Point(273, 73);
         residentSearchToLabel.Name = "residentSearchToLabel";
         residentSearchToLabel.Size = new Size(51, 15);
         residentSearchToLabel.TabIndex = 15;
@@ -186,7 +191,7 @@ partial class ResidentForm
         // residentSearchFromLabel
         // 
         residentSearchFromLabel.AutoSize = true;
-        residentSearchFromLabel.Location = new Point(21, 73);
+        residentSearchFromLabel.Location = new Point(157, 73);
         residentSearchFromLabel.Name = "residentSearchFromLabel";
         residentSearchFromLabel.Size = new Size(66, 15);
         residentSearchFromLabel.TabIndex = 17;
@@ -195,16 +200,27 @@ partial class ResidentForm
         // residentSearchFromDateTimePicker
         // 
         residentSearchFromDateTimePicker.Format = DateTimePickerFormat.Short;
-        residentSearchFromDateTimePicker.Location = new Point(21, 91);
+        residentSearchFromDateTimePicker.Location = new Point(157, 91);
         residentSearchFromDateTimePicker.Name = "residentSearchFromDateTimePicker";
         residentSearchFromDateTimePicker.Size = new Size(100, 23);
         residentSearchFromDateTimePicker.TabIndex = 16;
+        // 
+        // applayDateFilterButton
+        // 
+        applayDateFilterButton.Location = new Point(401, 85);
+        applayDateFilterButton.Name = "applayDateFilterButton";
+        applayDateFilterButton.Size = new Size(119, 29);
+        applayDateFilterButton.TabIndex = 18;
+        applayDateFilterButton.Text = "Applay date";
+        applayDateFilterButton.UseVisualStyleBackColor = true;
+        applayDateFilterButton.Click += applayDateFilterButton_Click;
         // 
         // ResidentForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(909, 561);
+        Controls.Add(applayDateFilterButton);
         Controls.Add(residentSearchFromLabel);
         Controls.Add(residentSearchFromDateTimePicker);
         Controls.Add(residentSearchToLabel);
@@ -251,4 +267,5 @@ partial class ResidentForm
     private Label residentSearchToLabel;
     private Label residentSearchFromLabel;
     private DateTimePicker residentSearchFromDateTimePicker;
+    private Button applayDateFilterButton;
 }

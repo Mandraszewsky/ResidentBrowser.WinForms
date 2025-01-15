@@ -8,6 +8,7 @@ public class Resident
     public string? FirstName { get; set; } = default!;
     public string? LastName { get; set; } = default!;
     public string? PESEL { get; set; } = default!;
+    public string? Province { get; set; } = default!;
     public DateTime BirthDate { get; set; } = default!;
     public ResidentSkinColorEnum? SkinColor { get; set; } = default!;
     public ResidentProfessionEnum? Profession { get; set; } = default!;
