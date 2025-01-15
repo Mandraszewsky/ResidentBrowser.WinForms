@@ -4,6 +4,7 @@ using ResidentBrowser.ApplicationLayer.Interfaces.ProvinceInterfaces;
 using ResidentBrowser.ApplicationLayer.Interfaces.ResidentInterfaces;
 using ResidentBrowser.ApplicationLayer.Services;
 using ResidentBrowser.InfrastructureLayer.Repositories;
+using ResidentBrowser.WinForms.Forms.ExportForms;
 using ResidentBrowser.WinForms.Forms.ResidentForms;
 using Serilog;
 
@@ -58,5 +59,6 @@ internal static class Program
         services.AddTransient<MainForm>();
         services.AddTransient<ResidentForm>();
         services.AddTransient<AddResidentForm>();
+        services.AddTransient<ExportForm>();
     }
 }

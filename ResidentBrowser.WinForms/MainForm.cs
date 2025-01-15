@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using ResidentBrowser.WinForms.Forms.ExportForms;
 using ResidentBrowser.WinForms.Forms.ResidentForms;
 
 namespace ResidentBrowser.WinForms;
@@ -69,5 +70,11 @@ public partial class MainForm : Form
         ResidentForm residentForm = Program.ServiceProvider!.GetRequiredService<ResidentForm>();
         OpenChildForm(residentForm, sender, e);
 
+    }
+
+    private void exportsButton_Click(object sender, EventArgs e)
+    {
+        ExportForm exportForm = Program.ServiceProvider!.GetRequiredService<ExportForm>();
+        OpenChildForm(exportForm, sender, e);
     }
 }

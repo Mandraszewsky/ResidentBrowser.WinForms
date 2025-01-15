@@ -65,6 +65,7 @@ partial class MainForm
         exportsButton.Text = "Exports";
         exportsButton.TextImageRelation = TextImageRelation.ImageBeforeText;
         exportsButton.UseVisualStyleBackColor = false;
+        exportsButton.Click += exportsButton_Click;
         // 
         // residentsButton
         // 
