@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using ResidentBrowser.ApplicationLayer.Interfaces.ResidentInterfaces;
 using ResidentBrowser.DomainLayer.Enums;
@@ -74,6 +75,7 @@ public partial class ResidentForm : Form
 
         if (result == DialogResult.Yes)
         {
+            Program.Logger.LogInformation($"Deleting a resident from the database with id: {residentId}");
             await _residentService.DeleteResident(residentId);
 
             FillResidentsGridView();

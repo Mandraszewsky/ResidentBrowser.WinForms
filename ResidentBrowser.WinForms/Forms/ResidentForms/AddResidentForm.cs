@@ -1,4 +1,6 @@
-﻿using ResidentBrowser.ApplicationLayer.Interfaces.ProvinceInterfaces;
+﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using ResidentBrowser.ApplicationLayer.Interfaces.ProvinceInterfaces;
 using ResidentBrowser.ApplicationLayer.Interfaces.ResidentInterfaces;
 using ResidentBrowser.ApplicationLayer.Validators;
 using ResidentBrowser.DomainLayer.Enums;
@@ -83,6 +85,7 @@ public partial class AddResidentForm : Form
 
         if (validatorResult.IsValid)
         {
+            Program.Logger.LogInformation($"Adding a resident to the database: {JsonConvert.SerializeObject(resident)}");
             await _residentService.CreateResident(resident);
             this.Close();
         }
